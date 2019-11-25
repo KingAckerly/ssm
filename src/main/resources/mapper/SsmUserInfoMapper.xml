@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsm.ssm.dao.ISsmUserInfoDao">
+    <resultMap id="UserInfoMap" type="com.lsm.ssm.entity.SsmUserInfoEntity">
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="saveSsmUserInfo" parameterType="com.lsm.ssm.entity.SsmUserInfoEntity">
+        INSERT INTO SSM_USER_INFO(user_id,account)values(#{userId},#{account})
+    </insert>
+</mapper>

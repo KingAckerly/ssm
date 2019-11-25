@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    <!-- 配置 读取properties文件 jdbc.properties -->
+    <context:property-placeholder location="classpath:properties/jdbc.properties"/>
+    <!-- 配置 数据源 -->
+    <!-- mysql -->
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.mysql.driver}"/>
+        <property name="url" value="${jdbc.mysql.url}"/>
+        <property name="username" value="${jdbc.mysql.username}"/>
+        <property name="password" value="${jdbc.mysql.password}"/>
+    </bean>-->
+    <!-- oracle -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.oracle.driver}"/>
+        <property name="url" value="${jdbc.oracle.url}"/>
+        <property name="username" value="${jdbc.oracle.username}"/>
+        <property name="password" value="${jdbc.oracle.password}"/>
+    </bean>
+    <!-- 配置SqlSessionFactory -->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 设置MyBatis核心配置文件 -->
+        <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
+        <!-- 设置数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 它表示我们的Mapper文件存放的位置，当我们的Mapper文件跟对应的Mapper接口处于同一位置的时候可以不用指定该属性的值。 -->
+        <property name="mapperLocations" value="classpath:/mapper/*.xml"/>
+    </bean>
+    <!-- 配置Mapper扫描 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 设置Mapper扫描包 -->
+        <property name="basePackage" value="com.lsm.ssm.dao"/>
+    </bean>
+</beans>
