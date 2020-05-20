@@ -7,6 +7,10 @@
     <!--此文件负责整个mvc中的配置-->
     <!--自动扫描Controller-->
     <context:component-scan base-package="com.lsm.ssm.controller"/>
+    <!--自动扫描初始化类-->
+    <context:component-scan base-package="com.lsm.ssm.base"/>
+    <!--自动扫描初始化配置类-->
+    <context:component-scan base-package="com.lsm.ssm.config"/>
     <!--启用spring的一些annotation -->
     <context:annotation-config/>
     <!-- 配置注解驱动 可以将request参数与绑定到controller参数上 -->
